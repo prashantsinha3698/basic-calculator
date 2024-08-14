@@ -19,7 +19,8 @@ document.addEventListener('keydown', (event) => {
         case '/':operation('/');break;
         case '.':operation('.');break;
         case '=':calculate();break;
-        case 'Backspace':clearDisplay();break;
+        case 'Escape':clearDisplay();break;
+        case 'Backspace':clearInput();break;
         default:break;
     }
   });
@@ -44,4 +45,10 @@ function calculate(){
 }
 function clearDisplay(){
     output.value='';
+}
+function clearInput(){
+    let outputString = output.value;
+    console.log(typeof outputString);
+    output.value = outputString.slice(0, -1);
+    console.log(outputString);
 }

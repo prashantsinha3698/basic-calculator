@@ -25,11 +25,20 @@ document.addEventListener('keydown', (event) => {
     }
   });
 function appendToDisplay(input){
+    if(output.value==='Error!'){
+        output.value='';
+    }
     output.value+=input;
     console.log(`Display: ${output.value}`);
 }
 function operation(input){
+    console.log(output.value);
     if(input!==lastInput && output.value){
+        if(input === '/100'){
+            output.value+=input;
+            calculate();
+            return;
+        }
         lastInput=input;
         appendToDisplay(input);
     }
@@ -37,10 +46,11 @@ function operation(input){
 function calculate(){
     try{
         output.value=eval(output.value);
-        console.log(`Output: ${output.value}`);
+        lastInput='';
+        console.log(`Output: ${output.value}`)
     }
     catch(e){
-        output.value='Error!';
+        output.value='Error!'
     }
 }
 function clearDisplay(){
@@ -49,6 +59,6 @@ function clearDisplay(){
 function clearInput(){
     let outputString = output.value;
     console.log(typeof outputString);
-    output.value = outputString.slice(0, -1);
+    output.value = outputString.slice(0, -1)
     console.log(outputString);
 }
